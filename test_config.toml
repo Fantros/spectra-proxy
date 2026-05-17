@@ -1,0 +1,38 @@
+# ==========================================
+# Spectra Proxy Integration Test Configuration
+# ==========================================
+
+[[services]]
+name = "test-http-service"
+protocol = "http"
+listen_addr = "127.0.0.1:18080"
+backends = ["127.0.0.1:18081", "127.0.0.1:18082"]
+load_balance = "round_robin"
+
+[services.rate_limit]
+max_requests = 10.0
+refill_rate = 2.0
+
+[services.http_rules]
+routes = [
+    { path = "/api/v1", backends = ["127.0.0.1:18083"] },
+    { path = "/", backends = ["127.0.0.1:18081", "127.0.0.1:18082"] }
+]
+
+[[services]]
+name = "test-tcp-service"
+protocol = "tcp"
+listen_addr = "127.0.0.1:15432"
+backends = ["127.0.0.1:15433", "127.0.0.1:15434"]
+load_balance = "round_robin"
+
+[services.rate_limit]
+max_requests = 10.0
+refill_rate = 2.0
+
+[[services]]
+name = "test-udp-service"
+protocol = "udp"
+listen_addr = "127.0.0.1:15353"
+backends = ["127.0.0.1:15354"]
+load_balance = "round_robin"

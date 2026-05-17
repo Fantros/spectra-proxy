@@ -1,0 +1,16 @@
+# Compiled Rust target directory
+/target
+
+# Local Let's Encrypt SSL/TLS certificates (ACME cache)
+/letsencrypt
+
+# Local runtime logs
+spectra-proxy.log
+
+# Local service configurations (Keep test_config.toml for tests)
+config.toml
+
+# OS and backup leftovers
+.DS_Store
+*.yaml.bk
+*.swp
